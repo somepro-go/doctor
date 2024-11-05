@@ -35,7 +35,7 @@
 
 
         window.onload = function() {
-            document.addEventListener('WeixinJSBridgeReady',function onBridgeReady(){
+            /*document.addEventListener('WeixinJSBridgeReady',function onBridgeReady(){
                 WeixinJSBridge.call('hideToolbar');
             })
             getWxConfig()
@@ -98,7 +98,7 @@
                 })
                 .catch(err => {
                     console.error('获取签名失败:', err);
-                });
+                });*/
              // 等待2秒后显示悬浮窗
             setTimeout(function() {
                 document.getElementById('floatingWindow').style.bottom = '20px'; // 滑入效果
