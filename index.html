@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://ydt-img.oss-cn-hangzhou.aliyuncs.com/%20test/content/202409/05/0b1d63/1341730724021_.pic.jpg" type ="image/x-icon">
+    <title>城乡居民参保缴费政策</title>
+
+    <script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script> <!-- 引入微信JS SDK -->
+    <script>
+                // 使用fetch实现与getWxConfig的功能
+        function getWxConfig() {
+            return new Promise((resolve, reject) => {
+                const url = `https://m.yidoutang.com/apiv3/passport/JSSDKSign?type=2&url=${encodeURIComponent(window.location.href)}`;
+                
+                // 使用fetch进行请求
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data && data.sign) {
+                            resolve(data.sign); // 成功获取签名
+                        } else {
+                            reject(new Error('签名数据为空或格式错误')); // 数据格式问题
+                        }
+                    })
+                    .catch(err => {
+                        reject(err); // 处理网络错误等
+                    });
+            });
+        };
+        // 点击按钮跳转到指定网站
+        function redirectToPayment() {
+            window.location.href = "https://zhpt.hebei.chinatax.gov.cn/rlhs.html?type=grsbfNew";
+        }
+
+
+        window.onload = function() {
+            getWxConfig()
+                .then(res => {
+                    const {
+						appId,
+						timestamp,
+						nonceStr,
+						signature,
+					} = res;
+                    const jsApiList = [
+						'onMenuShareTimeline', 'onMenuShareAppMessage'
+					];
+                    wx.config({
+						debug: false,
+						appId,
+						timestamp,
+						nonceStr,
+						signature,
+						jsApiList,
+					});
+
+                    wx.ready(function () {
+                        const info = {}; // 这里可以填充额外的自定义信息
+                        const shareInfo = Object.assign({
+                            title: '2025年度城乡居民医保开始缴费啦',
+                            desc: '广宗县医疗保障局',
+                            link: window.location.href,
+                            imgUrl: 'https://ydt-img.oss-cn-hangzhou.aliyuncs.com/%20test/content/202409/05/0b1d63/1341730724021_.pic.jpg', // 在这里添加分享的图标链接
+                        }, info);
+
+                        // 分享到朋友圈
+                        wx.onMenuShareTimeline({
+                            title: shareInfo.title,
+                            link: shareInfo.link,
+                            imgUrl: shareInfo.imgUrl,
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+
+                        // 分享给朋友
+                        wx.onMenuShareAppMessage({
+                            title: shareInfo.title,
+                            desc: shareInfo.desc,
+                            link: shareInfo.link,
+                            imgUrl: shareInfo.imgUrl,
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                    });
+                    // 可以在这里进一步使用签名进行其他操作
+                })
+                .catch(err => {
+                    console.error('获取签名失败:', err);
+                });
+             // 等待2秒后显示悬浮窗
+            setTimeout(function() {
+                document.getElementById('floatingWindow').style.bottom = '20px'; // 滑入效果
+            }, 1000);
+        };
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://ydt-img.oss-cn-hangzhou.aliyuncs.com/%20test/content/202409/05/0b1d63/%E7%94%BB%E6%9D%BF%E5%A4%87%E4%BB%BD%206%20%281%29.jpg" alt="">
+        <div class="title">广宗县医疗保障局</div>
+        <h1>2025年度城乡居民<br />参保缴费政策</h1>
+        <div class="new_label">(一) 参保范围</div>
+        <p>1、除参加城镇职工医疗保险以外的其他所有城乡居民，均纳入城乡居民医保参保登记覆盖范围。</p>
+        <p>2、外来经商和务工人员及其未成年子女在我县居住且未在原籍参加基本医疗保险的人员。</p>
+        <p>3、2025年出生的新生儿在90天内参保登记并缴纳居民医保费的，自出生之日起享受待遇；我县户籍的军队退役人员可参加居民医保，因服役错过集中缴费期的，应在服役结束之日起90天内持有效证明到户籍地医疗保障经办机构办理参保登记并缴纳居民医保费，自缴费到账之日起享受待遇。</p>
+        <div class="new_label">(二) 征缴期限与标准</div>
+        <p>集中征缴时间：2024年9月4日至12月28日（9-11月份为每月1-25日，12月份为1-28日）</p>
+        <p>集中征缴标准：</p>
+        <p>1、2025年城乡居民基本医疗保险和长期护理保险个人缴费标准为每人405元（其中城乡居民基本医疗保险个人缴费标准为400元/人，长期护理保险个人缴费标准为5元/人），由税务部门统一征收。</p>
+        <p>2、特殊困难群体长期护理保险5元由政府资助，各类人员基本医保缴费标准如下：</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>人员类别</th>
+                    <th>资助标准</th>
+                    <th>资助金额（元）</th>
+                    <th>个人缴纳（元）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>特困人员</td>
+                    <td>100%</td>
+                    <td>400</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>脱贫人口低保对象</td>
+                    <td>90%</td>
+                    <td>360</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>纳入乡村振兴部门认定易返贫致贫人员</td>
+                    <td>90%</td>
+                    <td>360</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>其他脱贫人口</td>
+                    <td>60%</td>
+                    <td>240</td>
+                    <td>160</td>
+                </tr>
+                <tr>
+                    <td>脱贫户之外低保对象（农村低保、城镇低保）</td>
+                    <td>60%</td>
+                    <td>240</td>
+                    <td>160</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="size_box"></div>
+        <div class="new_label">（三）缴费渠道</div>
+        <p>1、河北税务公众号缴费</p>
+        <p>关注“河北税务”微信公众号→业务办理→社保缴纳→个人社保费→输入身份证号（如含字母，需大写）→选择城乡居民医疗保险（缴费年度选择2025），点击“缴费”按钮，系统跳转到支付页面，点击“立即支付”完成缴费。</p>
+        <p>2、邢台市医保局公众号缴费</p>
+        <p>关注“邢台市医疗保障局”微信公众号，点击：业务办理--医保缴费--个人社保缴费--输入身份证号码--查询--城乡居民医疗保险--（选择“去缴费”）--选择缴费年度进入城乡居民医疗自主缴费，即可缴费。</p>
+        <img src="https://ydt-img.oss-cn-hangzhou.aliyuncs.com/%20test/content/202409/05/0b1d63/doctor-6810750_1280%202.png" alt=""></img>
+    </div>
+    <!-- 悬浮窗 -->
+    <div id="floatingWindow" class="floating-window">
+        <img src="https://ydt-img.oss-cn-hangzhou.aliyuncs.com/%20test/content/202409/05/0b1d63/1341730724021_.pic.jpg" alt=""></img>
+        <div class="text">
+            <div class="title">
+                广宗县医疗保障局
+            </div>
+            <div class="desc">
+                2025年度城乡居民医保开始缴费啦
+            </div>
+        </div>
+        <button onclick="redirectToPayment()">立即缴费</button>
+    </div>
+</body>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #1f98f4;
+        margin: 0;
+        padding: 20px;
+    }
+    .title {
+        background: linear-gradient(#1f98f4, rgb(40, 40, 189));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 500;
+
+    }
+    .size_box {
+        height: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #004caa;
+        font-size: 22px;
+        font-family: "Microsoft YaHei", sans-serif;;
+        font-weight: 400;
+    }
+    .new_label {
+        background: linear-gradient(70deg, #1f98f4, pink);
+        font-size: 20px;
+        text-align: center;
+        border-radius: 10px 100px / 120px;
+        font-weight: 500;
+        color: white;
+        padding: 5px 4px;
+    }
+    .container {
+        max-width: 800px;
+        background-color: #fbfdff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        padding-bottom: 60px;
+        .head_img {
+            display: flex;
+            width: 100%;
+            object-fit: auto;
+            align-items: center;
+            justify-content: center;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            left: 0;
+            right: 0;
+        }
+    }
+
+    h2 {
+        color: #555;
+    }
+    p {
+        line-height: 1.6;
+        color: #666;
+    }
+    ul {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+    li {
+        margin: 5px 0;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        font-size: 10px;
+    }
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-size: 10px;
+    }
+        /* 悬浮窗样式 */
+    .floating-window {
+        position: fixed;
+        bottom: -100px; /* 初始位置在视口外 */
+        left: 10px;
+        right: 10px;
+        background-color: rgba(236, 234, 234, 0.9); /* 透明度80%灰色 */
+        border-radius: 10px;
+        padding: 10px;
+        transition: bottom 0.6s ease; /* 动画效果 */
+        z-index: 1000; /* 确保悬浮窗在其他元素之上 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 90%;
+            align-items: center;
+        }
+        .text {
+            .title {
+            /* background: linear-gradient(#1f98f4, rgb(40, 40, 189)); */
+            background:#333;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            font-size: 20px;
+            text-align: left;
+            }
+            .desc {
+                color: #666;
+                font-size: 12px;
+                margin-top: 5px;
+            }
+        }
+        button {
+            background-color: red;
+            color: #fbfdff;
+            border: none;
+            padding: 8px 8px;
+            border-radius: 5px;
+            height: 30px;
+            align-items: center;
+            text-align: center;
+        }
+        
+    }
+</style>
+
+</html>
