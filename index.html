@@ -14,11 +14,22 @@
             window.location.href = "https://zhpt.hebei.chinatax.gov.cn/rlhs.html?type=grsbfNew";
         }
 
+        wx.config({
+  // 配置微信 JS SDK 的参数
+        });
+
+        wx.ready(function() {
+        wx.setNavigationBarTitle({
+            title: ''  // 设置为一个空字符串，来隐藏微信默认的标题
+        });
+        });
 
         window.onload = function() {
+            
             /*document.addEventListener('WeixinJSBridgeReady',function onBridgeReady(){
                 WeixinJSBridge.call('hideToolbar');
             })
+
             getWxConfig()
                 .then(res => {
                     const {
