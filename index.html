@@ -9,25 +9,25 @@
     <script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script> <!-- 引入微信JS SDK -->
     <script>
                 // 使用fetch实现与getWxConfig的功能
-        function getWxConfig() {
-            return new Promise((resolve, reject) => {
-                const url = `https://m.yidoutang.com/apiv3/passport/JSSDKSign?type=2&url=${encodeURIComponent(window.location.href)}`;
+        // function getWxConfig() {
+        //     return new Promise((resolve, reject) => {
+        //         const url = `https://m.yidoutang.com/apiv3/passport/JSSDKSign?type=2&url=${encodeURIComponent(window.location.href)}`;
                 
-                // 使用fetch进行请求
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data && data.sign) {
-                            resolve(data.sign); // 成功获取签名
-                        } else {
-                            reject(new Error('签名数据为空或格式错误')); // 数据格式问题
-                        }
-                    })
-                    .catch(err => {
-                        reject(err); // 处理网络错误等
-                    });
-            });
-        };
+        //         // 使用fetch进行请求
+        //         fetch(url)
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 if (data && data.sign) {
+        //                     resolve(data.sign); // 成功获取签名
+        //                 } else {
+        //                     reject(new Error('签名数据为空或格式错误')); // 数据格式问题
+        //                 }
+        //             })
+        //             .catch(err => {
+        //                 reject(err); // 处理网络错误等
+        //             });
+        //     });
+        // };
         // 点击按钮跳转到指定网站
         function redirectToPayment() {
             window.location.href = "https://zhpt.hebei.chinatax.gov.cn/rlhs.html?type=grsbfNew";
