@@ -35,6 +35,9 @@
 
 
         window.onload = function() {
+            document.addEventListener('WeixinJSBridgeReady',function onBridgeReady(){
+                WeixinJSBridge.call('hideToolbar');
+            })
             getWxConfig()
                 .then(res => {
                     const {
